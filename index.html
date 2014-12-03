@@ -1,0 +1,47 @@
+<!doctype html>
+<html>
+  <head>
+    <title>learningthree.js boiler plate for three.js</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+    <link href="css/main.css" rel="stylesheet" />
+  </head>
+
+<body>
+  <!-- three.js container -->
+  <div id="container"></div>
+
+  <!-- info on screen display -->
+  <div id="info">
+    <div class="top">
+      Useful <a href="#" target="_blank">link</a>
+    </div>
+    <div class="bottom" id="inlineDoc">
+      - <i>p</i> for screenshot
+    </div>
+  </div>
+
+  <script type="text/javascript" src="/js/vendor/require/require.js" data-main="/js/main"></script>
+
+  <script type="application/x-glsl" id="sky-vertex">
+  varying vec2 vUV;
+
+  void main() {
+    vUV = uv;
+    vec4 pos = vec4(position, 1.0);
+    gl_Position = projectionMatrix * modelViewMatrix * pos;
+  }
+  </script>
+
+  <script type="application/x-glsl" id="sky-fragment">
+  uniform sampler2D texture;
+  varying vec2 vUV;
+
+  void main() {
+    vec4 sample = texture2D(texture, vUV);
+    gl_FragColor = vec4(sample.xyz, sample.w);
+  }
+  </script>
+</body>
+
+</html>
